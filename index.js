@@ -9,6 +9,10 @@ const
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
+app.get("/", function (req, res) {
+	res.send("Deployed!")
+});
+
 // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
  
@@ -39,7 +43,7 @@ app.post('/webhook', (req, res) => {
 app.get('/webhook', (req, res) => {
 
   // Your verify token. Should be a random string.
-  let VERIFY_TOKEN = "cookieforme"
+  let VERIFY_TOKEN = process.env.VERIFICATION_TOKEN
     
   // Parse the query params
   let mode = req.query['hub.mode'];
@@ -62,3 +66,4 @@ app.get('/webhook', (req, res) => {
     }
   }
 });
+
