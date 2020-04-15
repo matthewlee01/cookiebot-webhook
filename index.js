@@ -81,9 +81,10 @@ app.get('/webhook', (req, res) => {
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
   let response;
+  let txt = received_message.text;
 
   if (received_message.text) {
-    if (received_message.text.contains("cookie")) {
+    if (!(text.indexOf("cookie") === -1)) {
       response = {"text" : "cookie?"};
     } else {
       response = {
